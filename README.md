@@ -1,85 +1,63 @@
 # vanillaJS-my-stopwatch
 
+## 추후 고려사항
 
-## 1. 버튼 4개하고 시간 남으면 추후 2개로 변경예정
+현재는 버튼 4개(start, stop, reset, lap)로 하고 시간 남으면 추후 2개로 변경예정
 
-## 2. 시작, 중지, 기록, 초기화
+<br>
 
-해야할 작업
-- 처음에는 이벤트를 4개로 각각 만든다. => 추후에 wrapper 에 이벤트를 1개로 축소하고 내부에서 분기.
+## 변수
 
+---
 
-변수작업
-- Element  
-    - 분 : const minuteEl = document.querySelector("#minute"); 
-    - 초 : 
-    - 밀리초 : 
+- Element : 분, 초, 밀리초
+- Button Element : 시작, 중지, 리셋, 랩
+- 기록을 담을 배열: history_push[] ,history_unshift[]
+- 시간 담을 변수 : minute, seconde, milliSecond
 
-    - 스타트 : const startBtn = document.querySelector("#button-start")
-    - 스탑 : 
-    - 리셋 : 
-    - 랩 :
+<br>
 
-- LAB 기록을 담을 배열을 선언 : history_push[] ,history_unshift[] 
+## 기능
 
+---
 
-- 00:00.00
-값 - let minute = 00 , 초 = 00, 밀리초
+### Start
 
-기능 : Start
-1. button Element 찾고 -> 이벤트(click)을 걸고, 내부에서 setInterval 함수 불러온다. 
-SetInterval(콜백함수, 주기시간);
-setInterval 함수가 실행되면서 값을 리턴할 때 : 리턴하는 값을 변수에 담으면 된다.
+1. setInterval 함수를 0.01초 마다 실행시킨다.
 
+1) milliSecond + 1 해준다.
 
-계속 증가하다가 (밀리초 <= 59)
+2) 만약 milliSecond가 60이면
+   (1) milliSecond = 0
+   (2) second + 1
+3) 만약 second가 60이면
+   (1) second = 0
+   (2) minute + 1
+4) 만약 minute이 60이면
+   (1) STOP()
 
-조건에 따른 분기
-if 밀리초가 60이 되면, (밀리초를 00 으로, second를 +1)
-if 세컨이 60이되면, (세컨은 00으로, 분은 +1) 
-if 분이 60이 되면, (스탑) // 60:00.00
+<br>
 
-----------------------------------------------------------------------------
-STOP 기능
+### Star
 
-setInterval을 멈추면 된다
--> clearInterval(timerId) 함수를 호출하면 된다. 
+1. clearInterval 함수를 호출하여 interval 멈춰준다.
 
-----------------------------------------------------------------------------
-Reset 기능
-로직순서 : Stop 기능이 먼저 동작한후, 모든 변수(값 - let minute = 00 , 초 = 00, 밀리초) 을 초기화
+<br>
 
-----------------------------------------------------------------------------
-Lab 기능
+### Reset
 
-1. 동작
-버튼을 눌렀을 때, (시간 값을 받아온다.) 
-click 이벤트가 발생할 때마다 history.push(); (나중에 출력할 때도 편하게??)
+1. STOP() 호출
+2. 모든 시간 변수(minute, seconde, milliSecond) 초기화
 
+<br>
 
-구간기록을 담는 태그를 만드는 함수
-(단, ul이 없으면, ul 생성 후 li 생성
-ul이 있으면, li만 생성
-)
-(조건을 확인할 때, 
-    // document.querySelector("ul") true면, html안에 ul태그가 있다는 의미.
-    //document.querySelector("ul") false면, html안에 ul태그가 없다는 의미.
-    if(!document.querySelector("ul")) {
-        ul을 생성해준 후, li 생성주고 작업하면됌
-    }
-    else {
-        li만 생성한 후 작업
-    }
-)
-ul -> li : 
-createElement() -> appaendChild -> innerHTML(textContent)을 통해 값을 입력
+### Lap
 
-
-2. 출력
-출력할 때는 history 배열을 반복하여 값을 가져온다. 
-
-
-[OPTION]
-한번은 push로 담긴 배열을 불러보고,
-다른 한번은 unshift로 담긴 배열을 불러보고
-순서를 확인
+1. 기록 배열에 현재 분, 초, 밀리초 String 형태로 push한다.
+2. ul 요소를 찾아온다.
+3. 만약 ul 요소가 없으면
+   1. ul 요소를 만들어준다.
+   2. wrapper에 ul 삽입한다.
+4. li 요소를 만든다.
+5. li 요소의 text에 기록정보를 입력한다.
+6. ul 요소에 li 요소를 첫번째 요소에 넣는다.
