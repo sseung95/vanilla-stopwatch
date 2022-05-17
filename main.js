@@ -36,7 +36,7 @@ function start() {
         miliSecond = 0;
         second++;
       }
-      if (second === 10) {
+      if (second === 60) {
         second = 0;
         minute++;
       }
