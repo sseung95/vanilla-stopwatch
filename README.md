@@ -6,48 +6,49 @@
 
 <br>
 
-## 변수
+## 개요
 
----
+### 변수
 
 - Element : 분, 초, 밀리초
 - Button Element : 시작, 중지, 리셋, 랩
-- 기록을 담을 배열: history_push[] ,history_unshift[]
+- 기록을 담을 배열: history
 - 시간 담을 변수 : minute, seconde, milliSecond
 
 <br>
 
-## 기능
+### 기능
 
----
+#### Start
 
-### Start
-
-1. setInterval 함수를 0.01초 마다 실행시킨다.
-
-1) milliSecond + 1 해준다.
-
-2) 만약 milliSecond가 60이면
-   (1) milliSecond = 0
-   (2) second + 1
-3) 만약 second가 60이면
-   (1) second = 0
-   (2) minute + 1
-4) 만약 minute이 60이면
-   (1) STOP()
+1. 만약 Interval이 있으면 setInterval 함수를 0.01초 마다 실행시킨다.
+   1. milliSecond + 1 해준다.
+   2. 만약 milliSecond가 60이면
+      1. milliSecond = 0
+      2. second + 1
+   3. 만약 second가 60이면
+      1. second = 0
+      2. minute + 1
+   4. 만약 minute이 60이면
+      1. 스탑워치를 중지 시킨다.
+   5. 화면에 시간을 출력한다.
 
 <br>
 
-### Star
+#### Stop
 
 1. clearInterval 함수를 호출하여 interval 멈춰준다.
+2. 인터벌 변수를 비운다.
 
 <br>
 
 ### Reset
 
-1. STOP() 호출
-2. 모든 시간 변수(minute, seconde, milliSecond) 초기화
+1. 모든 시간 변수(minute, seconde, milliSecond) 초기화한다.
+2. 화면에 있는 시간 00:00.00 으로 초기화한다.
+3. 인터벌 중지 및 인터벌 변수 비운다.
+4. 기록 내용을 초기화한다.
+5. history 배열을 초기화한다.
 
 <br>
 
