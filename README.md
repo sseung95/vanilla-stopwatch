@@ -1,25 +1,36 @@
 # vanillaJS-my-stopwatch
 
-## 추후 고려사항
+시작, 중지, 리셋, 기록 기능이 있는 스탑워치를 구현합니다.
 
-현재는 버튼 4개(start, stop, reset, lap)로 하고 시간 남으면 추후 2개로 변경예정
+이 프로젝트는 아래의 프로젝트를 참고하여 작성했습니다.
 
-<br>
-
-## 개요
-
-### 변수
-
-- Element : 분, 초, 밀리초
-- Button Element : 시작, 중지, 리셋, 랩
-- 기록을 담을 배열: history
-- 시간 담을 변수 : minute, seconde, milliSecond
+| https://mikkegoes.com/javascript-projects-for-beginners/
 
 <br>
 
-### 기능
+PS. 팀원들끼리 각자 개발 후 코드 리뷰 및 회고 진행
 
-#### Start
+<br>
+
+## 구현된 모습
+
+⏰ 프로젝트 링크 ↓
+
+| https://seung-stopwatch.netlify.app
+
+<br>
+
+## Skill & Tool
+
+- HTML
+- CSS
+- Vanilla JavaScript
+
+<br>
+
+## 기능
+
+### Start
 
 1. 만약 Interval이 있으면 setInterval 함수를 0.01초 마다 실행시킨다.
    1. milliSecond + 1 해준다.
@@ -35,7 +46,7 @@
 
 <br>
 
-#### Stop
+### Stop
 
 1. clearInterval 함수를 호출하여 interval 멈춰준다.
 2. 인터벌 변수를 비운다.
@@ -62,3 +73,38 @@
 4. li 요소를 만든다.
 5. li 요소의 text에 기록정보를 입력한다.
 6. ul 요소에 li 요소를 첫번째 요소에 넣는다.
+
+<br>
+
+## 어려웠던 점 & 해결방법
+
+- interval 을 생성하고 clear를 해주는데 clear가 먹히지 않았음
+  - 원인: 생성된 해당 interval을 clear해주어야 하는데 다른 때 생성된 interval을 clear 해주어서 먹히지 않는 것이었음
+  - 해결방법: interval을 한 개만 생성해서 (싱글톤..?) 하나의 해당 interval을 clear 하도록 함
+
+<br>
+
+## 추후 리팩토링할 내용
+
+- start, stop 버튼을 합치고, reset과 lab버튼을 합쳐서 버튼 2개가 조건에 따라 교차되면서 보여지게 제작
+- React로 리팩토링
+
+<br>
+
+## 회고
+
+- 👻 **승원**
+  - interval 개념에 대해 정확히 모르고 사용해서 문제가 풀리지 않았던 것 같다.
+    → 사용할 대상에 대해 잘 알고 사용하자!
+
+<br>
+
+- 🤡 **보우**
+  - 첫 프로젝트여서 코드를 너무 난잡하게 사용했다. 심지어 사용을 안하는 변수까지 발견.
+    → 조금 더 코드를 알기 쉽게 작성을 해야겠음.
+
+<br>
+
+- 🙉 **찬민**
+  - interval 을 처음 써본 프로젝트였다.
+    새로운 함수 및 메소드를 사용할 때, 개념을 확실하게 알고 가는 것이 중요할 것 같다.
